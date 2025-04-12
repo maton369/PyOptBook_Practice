@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>学生の乗車グループ分け問題</title>
+  </head>
+  <body>
+    <h1>学生の乗車グループ分け問題</h1>
+    <form action="/" method="post" enctype="multipart/form-data">
+      <p>
+        <label for="students">学生データファイル：</label>
+        <input type="file" id="students" name="students" />
+      </p>
+      <p>
+        <label for="cars">車データファイル：</label>
+        <input type="file" id="cars" name="cars" />
+      </p>
+      <input type="submit" value="最適化を実行" />
+    </form>
+
+    {% if solution_html %}
+    <h1>最適化結果</h1>
+    <form
+      name="download"
+      action="/download"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <input type="hidden" name="solution_html" value="{{ solution_html }}" />
+      <p><input type="submit" value="ダウンロード" /></p>
+    </form>
+    {{ solution_html|safe }} {% endif %}
+  </body>
+</html>
